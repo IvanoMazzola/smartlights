@@ -1,5 +1,7 @@
 {
   "name": "smartlights",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }
