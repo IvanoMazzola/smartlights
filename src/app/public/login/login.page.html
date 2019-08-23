@@ -1,24 +1,35 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar color="primary">
     <ion-title>Login</ion-title>
   </ion-toolbar>
 </ion-header>
-<ion-item>
-  <ion-input name="email" type="email" placeholder="your@email.com" ngModel required></ion-input>
-</ion-item>
-<ion-item>
-  <ion-input name="password" type="password" placeholder="Password" ngModel required></ion-input>
-</ion-item>
 
 <ion-content padding>
-  <ion-button (click)="login()" expand="block">Login</ion-button>
-  <p>&nbsp;</p>
-  <p>&nbsp;</p>
-  <ion-item text-center>
+
+  <ion-card>
+    <ion-card-header text-center>
+      <ion-card-title>Credentials</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      <ion-item>
+        <ion-icon name="mail" slot="start"></ion-icon>
+        <ion-input name="email" type="email" placeholder="your@email.com" [(ngModel)]="email" required></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-icon name="lock" slot="start"></ion-icon>
+        <ion-input name="password" type="password" placeholder="******" [(ngModel)]="password" required></ion-input>
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-button class="login-btn" (click)="login()" expand="block">Login</ion-button>
+
+  <ion-item text-center class="register-text">
     <ion-label color="dark">
       Don't have an account?
     </ion-label>
   </ion-item>
-  <p>&nbsp;</p>
-  <ion-button expand="block" color="secondary" routerLink="/register" routerDirection="forward">Register</ion-button>
+
+  <ion-button class="register-btn" expand="block" color="secondary" routerLink="/register" routerDirection="forward">Register</ion-button>
 </ion-content>

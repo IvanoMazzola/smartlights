@@ -1,5 +1,6 @@
 import { AuthenticationService } from './../../services/authentication.service';
 import { Component, OnInit } from '@angular/core';
+import { ToastService } from './../../services/toast.service';
 
 @Component({
   selector: 'app-login',
@@ -8,13 +9,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginPage implements OnInit {
 
-  constructor(private authService : AuthenticationService) { }
+  email: string;
+  password: string;
 
-  ngOnInit() {
+  constructor(private authService: AuthenticationService, private toastService: ToastService) {
   }
 
-  login() {
-    this.authService.login();
+  ngOnInit() {
+
+  }
+
+  async login() {
+    console.log(this.email + ', ' + this.password);
+    // this.authService.login();
+    const res = this.authService.validate(this.email, this.password);
+    if (!res) {
+      this.toastService.showToast('Credentials not valid', 'danger');
+    }
   }
 
 }

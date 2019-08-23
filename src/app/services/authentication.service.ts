@@ -5,6 +5,9 @@ import { BehaviorSubject } from 'rxjs';
 
 const TOKEN_KEY = 'auth-token';
 
+const userOne = ' { "email": "dabbraccio.francesco@gmail.com", "name": "Francesco", "password": "ivano" }';
+const jsonUser = JSON.parse(userOne);
+
 @Injectable({
   providedIn: 'root'
 })
@@ -24,6 +27,20 @@ export class AuthenticationService {
         this.authenticationState.next(true);
       }
     });
+  }
+
+  validate(mail: string, password: string) {
+    const userMail = jsonUser.email;
+    const userPassword = jsonUser.password;
+    if (mail !== userMail) {
+      return false;
+    } else {
+      if (password !== userPassword) {
+        return false;
+      } else {
+        this.login();
+      }
+    }
   }
 
   login() {
