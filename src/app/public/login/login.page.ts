@@ -20,8 +20,6 @@ export class LoginPage implements OnInit {
   }
 
   async login() {
-    console.log(this.email + ', ' + this.password);
-    // this.authService.login();
     const res = this.authService.validate(this.email, this.password);
     if (!res) {
       this.toastService.showToast('Credentials not valid', 'danger');

@@ -39,6 +39,7 @@ export class AuthenticationService {
         return false;
       } else {
         this.login();
+        return true;
       }
     }
   }
