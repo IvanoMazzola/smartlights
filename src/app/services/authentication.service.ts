@@ -2,11 +2,9 @@ import { Platform } from '@ionic/angular';
 import { Injectable } from '@angular/core';
 import { Storage } from '@ionic/storage';
 import { BehaviorSubject } from 'rxjs';
+import { db } from '../appdb';
 
 const TOKEN_KEY = 'auth-token';
-
-const userOne = ' { "email": "dabbraccio.francesco@gmail.com", "name": "Francesco", "password": "ivano" }';
-const jsonUser = JSON.parse(userOne);
 
 @Injectable({
   providedIn: 'root'
@@ -30,27 +28,16 @@ export class AuthenticationService {
   }
 
   validate(mail: string, password: string) {
-    const userMail = jsonUser.email;
-    const userPassword = jsonUser.password;
-    if (mail !== userMail) {
-      return false;
-    } else {
-      if (password !== userPassword) {
-        return false;
-      } else {
-        this.login();
-        return true;
-      }
-    }
+    return db.users.where('email').equals(mail);
   }
 
-  login() {
+  async login() {
     return this.storage.set(TOKEN_KEY, 'Bearer 1234567').then(() => {
       this.authenticationState.next(true);
     });
   }
 
-  logout() {
+  async logout() {
     return this.storage.remove(TOKEN_KEY).then(() => {
       this.authenticationState.next(false);
     });

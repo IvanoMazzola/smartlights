@@ -1,6 +1,7 @@
 import { AuthenticationService } from './../../services/authentication.service';
 import { Component, OnInit } from '@angular/core';
 import { ToastService } from './../../services/toast.service';
+import { db } from './../../appdb';
 
 @Component({
   selector: 'app-login',
@@ -13,6 +14,7 @@ export class LoginPage implements OnInit {
   password: string;
 
   constructor(private authService: AuthenticationService, private toastService: ToastService) {
+
   }
 
   ngOnInit() {
@@ -20,10 +22,15 @@ export class LoginPage implements OnInit {
   }
 
   async login() {
+    /* db.table('users').toArray().then(data => {
+      console.log(JSON.stringify(data));
+    }); */
+
     const res = this.authService.validate(this.email, this.password);
-    if (!res) {
-      this.toastService.showToast('Credentials not valid', 'danger');
-    }
+
+    res.each(user => {
+      console.log('Found: ' + user.email + ' with password ' + user.password);
+    });
   }
 
 }
