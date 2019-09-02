@@ -27,8 +27,9 @@ export class AuthenticationService {
     });
   }
 
-  validate(mail: string, password: string) {
-    return db.users.where('email').equals(mail);
+  validate(mail: string, pwd: string) {
+    return db.users
+    .where({email: mail, password: pwd});
   }
 
   async login() {

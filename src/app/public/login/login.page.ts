@@ -27,9 +27,14 @@ export class LoginPage implements OnInit {
     }); */
 
     const res = this.authService.validate(this.email, this.password);
-
-    res.each(user => {
-      console.log('Found: ' + user.email + ' with password ' + user.password);
+    res.count().then(x => {
+      if (x === 0) {
+        this.toastService.showToast('User not found', 'danger');
+      } else {
+        res.each(user => {
+          console.log('Found: ' + user.email + ' with password ' + user.password);
+        });
+      }
     });
   }
 
