@@ -1,0 +1,25 @@
+ion-icon {
+  &.medium {
+    width: 20px;
+    height: 20px;
+    margin-right: 8px;
+  }
+
+  &.big {
+    width: 50px;
+    height: 50px;
+  }
+
+  &.bigger {
+    width: 100px;
+    height: 100px;
+  }
+
+  &.red {
+    color: red;
+  }
+}
+
+.btn-transparente {
+  --background-hover: #ffffff;
+}

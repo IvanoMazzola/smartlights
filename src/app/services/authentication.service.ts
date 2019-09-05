@@ -22,18 +22,20 @@ export class AuthenticationService {
   checkToken() {
     this.storage.get(TOKEN_KEY).then(res => {
       if (res) {
+        console.log('Il token è: ' + res);
         this.authenticationState.next(true);
+        return res;
       }
     });
   }
 
   validate(mail: string, pwd: string) {
     return db.users
-    .where({email: mail, password: pwd});
+      .where({ email: mail, password: pwd });
   }
 
-  async login() {
-    return this.storage.set(TOKEN_KEY, 'Bearer 1234567').then(() => {
+  async login(email: string) {
+    return this.storage.set(TOKEN_KEY, email).then(() => {
       this.authenticationState.next(true);
     });
   }

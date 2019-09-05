@@ -34,6 +34,7 @@ export class LoginPage implements OnInit {
         res.each(user => {
           console.log('Found: ' + user.email + ' with password ' + user.password);
         });
+        this.authService.login(this.email);
       }
     });
   }
