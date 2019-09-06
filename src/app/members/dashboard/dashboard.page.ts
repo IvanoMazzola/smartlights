@@ -9,10 +9,14 @@ import { db } from '../../appdb';
 })
 export class DashboardPage implements OnInit {
 
-  items: any[];
+  items: any[] = [];
 
   constructor(private authService: AuthenticationService) {
-
+    const res = db.plants
+    .where({ user: authService.getTokenString() })
+    .toArray(plants => {
+      this.items = plants;
+    });
   }
 
   ngOnInit() {

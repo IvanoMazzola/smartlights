@@ -5,6 +5,7 @@ import { BehaviorSubject } from 'rxjs';
 import { db } from '../appdb';
 
 const TOKEN_KEY = 'auth-token';
+let token = '';
 
 @Injectable({
   providedIn: 'root'
@@ -19,14 +20,14 @@ export class AuthenticationService {
     });
   }
 
+  getTokenString() {
+    return token;
+  }
+
   checkToken() {
-    this.storage.get(TOKEN_KEY).then(res => {
-      if (res) {
-        console.log('Il token è: ' + res);
-        this.authenticationState.next(true);
-        return res;
-      }
-    });
+    if (token !== '') {
+      this.authenticationState.next(true);
+    }
   }
 
   validate(mail: string, pwd: string) {
@@ -35,15 +36,13 @@ export class AuthenticationService {
   }
 
   async login(email: string) {
-    return this.storage.set(TOKEN_KEY, email).then(() => {
-      this.authenticationState.next(true);
-    });
+    token = email;
+    this.authenticationState.next(true);
   }
 
   async logout() {
-    return this.storage.remove(TOKEN_KEY).then(() => {
-      this.authenticationState.next(false);
-    });
+    token = '';
+    this.authenticationState.next(false);
   }
 
   isAuthenticated() {

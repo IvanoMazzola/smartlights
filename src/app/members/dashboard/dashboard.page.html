@@ -30,7 +30,7 @@
   <ion-virtual-scroll [items]="items" approxItemHeight="160px">
     <ion-card *virtualItem="let item; let itemBounds = bounds;">
       <ion-card-header>
-        <ion-card-subtitle>Impianto #{{ item.number }}</ion-card-subtitle>
+        <ion-card-subtitle>Impianto #{{ item.id }} </ion-card-subtitle>
       </ion-card-header>
 
       <ion-card-content>
@@ -40,9 +40,9 @@
               <ion-icon class="big" src="assets/google_map.svg"></ion-icon>
             </ion-col>
             <ion-col text-start>
-              <div>Area: North Italy</div>
-              <div>City: Milan</div>
-              <div>POD: IT 001 E 12345678</div>
+              <div>Area: {{ item.area }} </div>
+              <div>City: {{ item.city }}</div>
+              <div>POD: {{ item.pod }}</div>
             </ion-col>
             <ion-col text-center>
               <ion-button class="btn-transparente" fill="clear" size="large">
