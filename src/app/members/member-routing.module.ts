@@ -3,7 +3,8 @@ import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
 
 const routes: Routes = [
-  { path: 'dashboard', loadChildren: './dashboard/dashboard.module#DashboardPageModule' }
+  { path: 'dashboard', loadChildren: './dashboard/dashboard.module#DashboardPageModule' },
+  { path: 'filters', loadChildren: './filters/filters.module#FiltersPageModule' }
 ];
 
 

@@ -1,0 +1,70 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Filter by</ion-title>
+    <ion-buttons slot="end">
+      <ion-back-button text="" icon="close"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item color="light">
+    <ion-text color="dark">
+      <h3>Consumption</h3>
+    </ion-text>
+  </ion-item>
+  <ion-grid>
+    <ion-row>
+      <ion-col text-center>
+        <ion-button fill='outline'>Low</ion-button>
+      </ion-col>
+      <ion-col text-center>
+        <ion-button fill='outline'>Medium</ion-button>
+      </ion-col>
+      <ion-col text-center>
+        <ion-button fill='outline'>High</ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-item color="light">
+      <ion-text color="dark">
+        <h3>Area</h3>
+      </ion-text>
+    </ion-item>
+
+  <ion-item>
+    <ion-label>North</ion-label>
+    <ion-checkbox color="primary" slot="start"></ion-checkbox>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Center</ion-label>
+    <ion-checkbox color="primary" slot="start"></ion-checkbox>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>South</ion-label>
+    <ion-checkbox color="primary" slot="start"></ion-checkbox>
+  </ion-item>
+
+  <ion-item color="light">
+    <ion-text color="dark">
+      <h3>Status</h3>
+    </ion-text>
+  </ion-item>
+  <ion-grid>
+    <ion-row>
+      <ion-col text-center>
+        <ion-button fill='outline' size="large">On</ion-button>
+      </ion-col>
+      <ion-col text-center>
+        <ion-button fill='outline' size="large">Off</ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
+
+<ion-footer>
+  <ion-button expand="full" size="large" color="secondary">Apply filters</ion-button>
+</ion-footer>

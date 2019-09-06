@@ -23,6 +23,7 @@ export class AppDatabase extends Dexie {
         // Populate db
         this.table('users').put({ id: 1, email: 'dabbraccio.francesco@gmail.com', password: 'ivano' });
         this.table('users').put({ id: 2, email: 'x100mini@gmail.com', password: 'francesco' });
+        this.table('users').put({ id: 3, email: 'a', password: 'b' });
 
         this.table('plants').put({ id: 1, user: 'dabbraccio.francesco@gmail.com', area: 'North Italy', city: 'Milan', pod: 'IT 001 E 12345678' });
         this.table('plants').put({ id: 2, user: 'dabbraccio.francesco@gmail.com', area: 'South Italy', city: 'Vico Equense', pod: 'IT 002 E 12345678' });
