@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar color="primary">
     <ion-title>Filter by</ion-title>
     <ion-buttons slot="end">
       <ion-back-button text="" icon="close"></ion-back-button>
@@ -16,13 +16,14 @@
   <ion-grid>
     <ion-row>
       <ion-col text-center>
-        <ion-button id="Low" #low color="primary" (click)="changeConsumption(low)" fill='outline'>Low</ion-button>
+        <ion-button id="Low" #low color="tertiary" (click)="changeConsumption(low)" fill='outline'>Low</ion-button>
       </ion-col>
       <ion-col text-center>
-        <ion-button id="Medium" #medium color="primary" (click)="changeConsumption(medium)" fill='outline'>Medium</ion-button>
+        <ion-button id="Medium" #medium color="tertiary" (click)="changeConsumption(medium)" fill='outline'>Medium
+        </ion-button>
       </ion-col>
       <ion-col text-center>
-        <ion-button id="High" #high color="primary" (click)="changeConsumption(high)" fill='outline'>High</ion-button>
+        <ion-button id="High" #high color="tertiary" (click)="changeConsumption(high)" fill='outline'>High</ion-button>
       </ion-col>
     </ion-row>
   </ion-grid>
@@ -56,15 +57,15 @@
   <ion-grid>
     <ion-row>
       <ion-col text-center>
-        <ion-button fill='outline' >On</ion-button>
+        <ion-button id="On" #on color="tertiary" (click)="changeStatus(on)" fill='outline'>On</ion-button>
       </ion-col>
       <ion-col text-center>
-        <ion-button fill='outline'>Off</ion-button>
+        <ion-button id="Off" #off color="tertiary" (click)="changeStatus(off)" fill='outline'>Off</ion-button>
       </ion-col>
     </ion-row>
   </ion-grid>
 </ion-content>
 
-<ion-footer>
-  <ion-button expand="full" (click)="applyFilters()" size="large" color="tertiary">Apply filters</ion-button>
+<ion-footer class="my-footer">
+  <ion-button color="light" fill="clear" expand="block" (click)="applyFilters()">Apply filters</ion-button>
 </ion-footer>

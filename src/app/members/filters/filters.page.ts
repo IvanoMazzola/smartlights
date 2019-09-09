@@ -25,15 +25,34 @@ export class FiltersPage implements OnInit {
     }
     console.log(this.consumption);
     console.log(ionButton);
-    if (ionButton.color === 'primary') {
-      ionButton.color = 'secondary';
-    } else {
+    if (ionButton.color === 'tertiary') {
       ionButton.color = 'primary';
+    } else {
+      ionButton.color = 'tertiary';
+    }
+  }
+
+  changeStatus(ionButton) {
+    const value = ionButton.el.id;
+    console.log(value);
+    if (this.status.includes(value)) {
+      this.status = this.status.filter(x => {
+        return x !== value;
+      });
+    } else {
+      this.status.push(value);
+    }
+    console.log(this.status);
+    console.log(ionButton);
+    if (ionButton.color === 'tertiary') {
+      ionButton.color = 'primary';
+    } else {
+      ionButton.color = 'tertiary';
     }
   }
 
   applyFilters() {
-    
+
   }
 
   ngOnInit() {
