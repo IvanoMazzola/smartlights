@@ -42,13 +42,14 @@
             <ion-col text-start>
               <div>Area: {{ item.area }} </div>
               <div>City: {{ item.city }}</div>
+              <div>Consumption: {{ item.consumption }}</div>
               <div>POD: {{ item.pod }}</div>
             </ion-col>
             <ion-col text-center>
               <ion-button class="btn-transparente" fill="clear" size="large">
                 <ion-icon class="big" src="assets/light_off.svg"></ion-icon>
               </ion-button>
-              <div>OFF</div>
+              <div>{{ item.status }}</div>
             </ion-col>
           </ion-row>
         </ion-grid>

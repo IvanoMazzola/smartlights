@@ -16,13 +16,13 @@
   <ion-grid>
     <ion-row>
       <ion-col text-center>
-        <ion-button fill='outline'>Low</ion-button>
+        <ion-button id="Low" #low color="primary" (click)="changeConsumption(low)" fill='outline'>Low</ion-button>
       </ion-col>
       <ion-col text-center>
-        <ion-button fill='outline'>Medium</ion-button>
+        <ion-button id="Medium" #medium color="primary" (click)="changeConsumption(medium)" fill='outline'>Medium</ion-button>
       </ion-col>
       <ion-col text-center>
-        <ion-button fill='outline'>High</ion-button>
+        <ion-button id="High" #high color="primary" (click)="changeConsumption(high)" fill='outline'>High</ion-button>
       </ion-col>
     </ion-row>
   </ion-grid>
@@ -56,15 +56,15 @@
   <ion-grid>
     <ion-row>
       <ion-col text-center>
-        <ion-button fill='outline' size="large">On</ion-button>
+        <ion-button fill='outline' >On</ion-button>
       </ion-col>
       <ion-col text-center>
-        <ion-button fill='outline' size="large">Off</ion-button>
+        <ion-button fill='outline'>Off</ion-button>
       </ion-col>
     </ion-row>
   </ion-grid>
 </ion-content>
 
 <ion-footer>
-  <ion-button expand="full" size="large" color="tertiary">Apply filters</ion-button>
+  <ion-button expand="full" (click)="applyFilters()" size="large" color="tertiary">Apply filters</ion-button>
 </ion-footer>
