@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { FilterService } from '../../services/filter.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-filters',
@@ -11,7 +13,7 @@ export class FiltersPage implements OnInit {
   area: string[] = [];
   status: string[] = [];
 
-  constructor() { }
+  constructor(private filterService: FilterService, private router: Router) { }
 
   changeConsumption(ionButton) {
     const value = ionButton.el.id;
@@ -52,10 +54,12 @@ export class FiltersPage implements OnInit {
   }
 
   applyFilters() {
-
+    this.filterService.changeConsumption(this.consumption);
+    this.router.navigate(['members', 'dashboard']);
   }
 
   ngOnInit() {
+
   }
 
 }
