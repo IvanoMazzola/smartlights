@@ -17,6 +17,9 @@
     <ion-row>
       <ion-col text-start>
         Number of establishments: {{ items.length }}
+        <ion-list *ngFor="let consumo of consumptionFilter">
+          {{ consumo }}
+        </ion-list>
       </ion-col>
       <ion-col text-end>
         <ion-button class="btn-transparente" fill="clear" (click)="loadFilters()">
@@ -46,10 +49,13 @@
               <div>POD: {{ item.pod }}</div>
             </ion-col>
             <ion-col text-center>
-              <ion-button class="btn-transparente" fill="clear" size="large">
-                <ion-icon class="big" src="assets/light_off.svg"></ion-icon>
+              <ion-button id="{{ item.id }}" class="btn-transparente" (click)="updateStatus($event)" fill="clear"
+                size="large">
+                <ion-icon *ngIf="item.status == 'OFF'" class="big" color="tertiary" src="assets/light_off.svg">
+                </ion-icon>
+                <ion-icon *ngIf=" item.status == 'ON'" class="big" color="primary" src="assets/light_off.svg">
+                </ion-icon>
               </ion-button>
-              <div>{{ item.status }}</div>
             </ion-col>
           </ion-row>
         </ion-grid>
