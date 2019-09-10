@@ -12,7 +12,7 @@ export class FilterService {
   status: string[] = ['ON', 'OFF'];
 
   constructor(private authService: AuthenticationService) {
-    console.log('Creato ' + this.consumption);
+
   }
 
   getPlants() {
@@ -28,5 +28,13 @@ export class FilterService {
 
   changeConsumption(newConsumption: string[]) {
     this.consumption = newConsumption;
+  }
+
+  changeArea(newArea: string[]) {
+    this.area = newArea;
+  }
+
+  changeStatus(newStatus: string[]) {
+    this.status = newStatus;
   }
 }

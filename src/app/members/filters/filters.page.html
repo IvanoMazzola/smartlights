@@ -39,17 +39,17 @@
 
   <ion-item>
     <ion-label>North</ion-label>
-    <ion-checkbox color="primary" mode="ios" slot="start"></ion-checkbox>
+    <ion-checkbox [(ngModel)]="north" color="primary" mode="ios" slot="start"></ion-checkbox>
   </ion-item>
 
   <ion-item>
     <ion-label>Center</ion-label>
-    <ion-checkbox color="primary" mode="ios" slot="start"></ion-checkbox>
+    <ion-checkbox color="primary" [(ngModel)]="center" mode="ios" slot="start"></ion-checkbox>
   </ion-item>
 
   <ion-item>
     <ion-label>South</ion-label>
-    <ion-checkbox color="primary" mode="ios" slot="start"></ion-checkbox>
+    <ion-checkbox color="primary" [(ngModel)]="south" mode="ios" slot="start"></ion-checkbox>
   </ion-item>
 
   <ion-item color="light">
@@ -60,10 +60,10 @@
   <ion-grid>
     <ion-row>
       <ion-col text-center>
-        <ion-button id="On" #on shape="round" color="tertiary" (click)="changeStatus(on)" fill='outline'>On</ion-button>
+        <ion-button id="ON" #on shape="round" color="tertiary" (click)="changeStatus(on)" fill='outline'>On</ion-button>
       </ion-col>
       <ion-col text-center>
-        <ion-button id="Off" #off shape="round" color="tertiary" (click)="changeStatus(off)" fill='outline'>Off
+        <ion-button id="OFF" #off shape="round" color="tertiary" (click)="changeStatus(off)" fill='outline'>Off
         </ion-button>
       </ion-col>
     </ion-row>
