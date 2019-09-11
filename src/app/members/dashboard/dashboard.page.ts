@@ -14,6 +14,8 @@ export class DashboardPage implements OnInit {
 
   items: any[] = [];
 
+  searchName: string;
+
   consumptionFilter: string[] = [];
   areaFilter: string[] = [];
   statusFilter: string[] = [];
@@ -24,6 +26,20 @@ export class DashboardPage implements OnInit {
 
   ngOnInit() {
 
+  }
+
+  filterValues() {
+    console.log('Nome ' + this.searchName);
+  }
+
+  removeConsumption(value) {
+    console.log('Consumption filter to remove ' + value);
+    const newFilter = this.consumptionFilter.filter(x => {
+      return x !== value;
+    });
+    this.filterService.changeConsumption(newFilter);
+    this.consumptionFilter = newFilter;
+    this.filterService.getPlants().then(plants => this.items = plants);
   }
 
   updateStatus(event) {

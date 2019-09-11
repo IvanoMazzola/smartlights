@@ -8,7 +8,7 @@
     <ion-title>My Dashboard</ion-title>
   </ion-toolbar>
   <ion-toolbar color="primary" class="toolbar-padding">
-    <ion-searchbar showCancelButton="focus"></ion-searchbar>
+    <ion-searchbar [(ngModel)]="searchName" (ionChange)="filterValues()" showCancelButton="focus"></ion-searchbar>
   </ion-toolbar>
 </ion-header>
 
@@ -26,9 +26,9 @@
   <ion-grid>
     <ion-row>
       <ion-list *ngFor="let consumption of consumptionFilter">
-        <ion-button class="btn-nocaps" fill="clear" slot="start">
+        <ion-button class="btn-nocaps" fill="clear" slot="start" (click)="removeConsumption(consumption)">
           <ion-icon color="tertiary" src="assets/error.svg"></ion-icon>
-          <ion-label color="dark">{{ consumption }}</ion-label>
+          <ion-label color="dark">Consumption: {{ consumption }}</ion-label>
         </ion-button>
       </ion-list>
     </ion-row>
