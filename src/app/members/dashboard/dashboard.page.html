@@ -7,42 +7,46 @@
     </ion-buttons>
     <ion-title>My Dashboard</ion-title>
   </ion-toolbar>
+  <ion-toolbar color="primary" class="toolbar-padding">
+    <ion-searchbar showCancelButton="focus"></ion-searchbar>
+  </ion-toolbar>
 </ion-header>
 
-<ion-content padding>
-
-  <ion-searchbar showCancelButton="focus"></ion-searchbar>
+<ion-content>
+  <ion-item no-padding>
+    <ion-label class="label-padding" color="dark">
+      Number of plants: {{ items.length }}
+    </ion-label>
+    <ion-button slot="end" class="btn-transparente" fill="clear" (click)="loadFilters()">
+      <ion-icon class="medium" src="assets/filters.svg"></ion-icon>
+      Filters
+    </ion-button>
+  </ion-item>
 
   <ion-grid>
     <ion-row>
-      <ion-col text-start>
-        Number of establishments: {{ items.length }}
-        <ion-list *ngFor="let consumo of consumptionFilter">
-          {{ consumo }}
-        </ion-list>
-      </ion-col>
-      <ion-col text-end>
-        <ion-button class="btn-transparente" fill="clear" (click)="loadFilters()">
-          <ion-icon class="medium" src="assets/filters.svg"></ion-icon>
-          Filters
+      <ion-list *ngFor="let consumption of consumptionFilter">
+        <ion-button class="btn-nocaps" fill="clear" slot="start">
+          <ion-icon color="tertiary" src="assets/error.svg"></ion-icon>
+          <ion-label color="dark">{{ consumption }}</ion-label>
         </ion-button>
-      </ion-col>
+      </ion-list>
     </ion-row>
   </ion-grid>
 
   <ion-virtual-scroll [items]="items" approxItemHeight="160px">
     <ion-card *virtualItem="let item; let itemBounds = bounds;">
       <ion-card-header>
-        <ion-card-subtitle>Impianto #{{ item.id }} </ion-card-subtitle>
+        <ion-card-subtitle>Plant #{{ item.id }} </ion-card-subtitle>
       </ion-card-header>
 
       <ion-card-content>
         <ion-grid>
           <ion-row>
-            <ion-col text-start>
+            <ion-col text-center>
               <ion-icon class="big" src="assets/google_map.svg"></ion-icon>
             </ion-col>
-            <ion-col text-start>
+            <ion-col text-center>
               <div>Area: {{ item.area }} </div>
               <div>City: {{ item.city }}</div>
               <div>Consumption: {{ item.consumption }}</div>

@@ -1,8 +1,9 @@
 ion-icon {
+  margin-right: 8px;
+
   &.medium {
     width: 20px;
     height: 20px;
-    margin-right: 8px;
   }
 
   &.big {
@@ -20,7 +21,25 @@ ion-icon {
   }
 }
 
+.card-no-margin {
+  margin: 0px;
+}
+
+.label-padding {
+  padding-left: 16px;
+}
+
+.toolbar-padding {
+  padding-left: 8px;
+  padding-right: 8px;
+  padding-bottom: 8px;
+}
+
+.btn-nocaps {
+  text-transform: none;
+}
+
 .btn-transparente {
   --background-hover: #ffffff;
-  --color: var(--ion-color-secondary)
+  --color: var(--ion-color-secondary);
 }
