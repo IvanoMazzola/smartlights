@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FilterService } from '../../services/filter.service';
+import { PlantService } from '../../services/plant.service';
 import { Router } from '@angular/router';
-import { IonButton } from '@ionic/angular';
 
 @Component({
   selector: 'app-filters',
@@ -18,20 +17,25 @@ export class FiltersPage implements OnInit {
   center: boolean;
   south: boolean;
 
-  constructor(private filterService: FilterService, private router: Router) { }
+  constructor(private plantService: PlantService, private router: Router) { }
 
   changeConsumption(ionButton) {
     const value = ionButton.el.id;
     console.log(value);
+
     if (this.consumption.includes(value)) {
+      // Remove value if present
       this.consumption = this.consumption.filter(x => {
         return x !== value;
       });
     } else {
+      // Else add it
       this.consumption.push(value);
     }
+
     console.log(this.consumption);
     console.log(ionButton);
+
     if (ionButton.color === 'tertiary') {
       ionButton.color = 'primary';
     } else {
@@ -42,15 +46,20 @@ export class FiltersPage implements OnInit {
   changeStatus(ionButton) {
     const value = ionButton.el.id;
     console.log(value);
+
+    // Remove status if present
     if (this.status.includes(value)) {
       this.status = this.status.filter(x => {
         return x !== value;
       });
     } else {
+      // Else add it
       this.status.push(value);
     }
+
     console.log(this.status);
     console.log(ionButton);
+
     if (ionButton.color === 'tertiary') {
       ionButton.color = 'primary';
     } else {
@@ -68,12 +77,11 @@ export class FiltersPage implements OnInit {
     if (this.south) {
       this.area.push('South Italy');
     }
+
     this.checkEmpty();
-    this.filterService.changeConsumption(this.consumption);
-    this.filterService.changeArea(this.area);
-    this.filterService.changeStatus(this.status);
-    /* localStorage.setItem('consumption', JSON.stringify(this.consumption));
-    console.log('Ivano ' + JSON.stringify(this.consumption)); */
+
+    this.plantService.setFilters(this.consumption);
+
     this.router.navigate(['members', 'dashboard']);
   }
 
@@ -90,9 +98,6 @@ export class FiltersPage implements OnInit {
   }
 
   ngOnInit() {
-    /* console.log('Init filters page');
-    const cons = localStorage.getItem('consumption');
-    console.log('Federico ' + JSON.parse(cons));
-    this.consumption = JSON.parse(cons); */
+
   }
 }

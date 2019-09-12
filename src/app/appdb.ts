@@ -29,6 +29,7 @@ export class AppDatabase extends Dexie {
 
         this.table('plants').put({ id: 1, user: 'dabbraccio.francesco@gmail.com', area: 'North Italy', city: 'Milan', pod: 'IT 001 E 12345678', consumption: 'Low', status: 'OFF' });
         this.table('plants').put({ id: 2, user: 'dabbraccio.francesco@gmail.com', area: 'South Italy', city: 'Vico Equense', pod: 'IT 002 E 12345678', consumption: 'Medium', status: 'ON' });
+
         this.table('plants').put({ id: 3, user: 'x100mini@gmail.com', area: 'North Italy', city: 'Turin', pod: 'IT 003 E 12345678', consumption: 'High', status: 'OFF' });
         this.table('plants').put({ id: 4, user: 'x100mini@gmail.com', area: 'Center Italy', city: 'Frosinone', pod: 'IT 004 E 12345678', consumption: 'Low', status:  'OFF'});
         this.table('plants').put({ id: 5, user: 'x100mini@gmail.com', area: 'South Italy', city: 'Canosa di Puglia', pod: 'IT 005 E 12345678', consumption: 'High', status:  'ON'});

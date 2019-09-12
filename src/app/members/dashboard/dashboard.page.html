@@ -23,7 +23,7 @@
     </ion-button>
   </ion-item>
 
-  <ion-grid>
+  <ion-grid *ngIf="consumptionFilter.length !== 3">
     <ion-row>
       <ion-list *ngFor="let consumption of consumptionFilter">
         <ion-button class="btn-nocaps" fill="clear" slot="start" (click)="removeConsumption(consumption)">
@@ -37,7 +37,7 @@
   <ion-virtual-scroll [items]="items" approxItemHeight="160px">
     <ion-card *virtualItem="let item; let itemBounds = bounds;">
       <ion-card-header>
-        <ion-card-subtitle>Plant #{{ item.id }} </ion-card-subtitle>
+        <ion-card-subtitle>Plant ID: {{ item.id }} </ion-card-subtitle>
       </ion-card-header>
 
       <ion-card-content>
@@ -53,11 +53,10 @@
               <div>POD: {{ item.pod }}</div>
             </ion-col>
             <ion-col text-center>
-              <ion-button id="{{ item.id }}" class="btn-transparente" (click)="updateStatus($event)" fill="clear"
-                size="large">
+              <ion-button class="btn-transparente" (click)="updateStatus(item)" fill="clear" size="large">
                 <ion-icon *ngIf="item.status == 'OFF'" class="big" color="tertiary" src="assets/light_off.svg">
                 </ion-icon>
-                <ion-icon *ngIf=" item.status == 'ON'" class="big" color="primary" src="assets/light_off.svg">
+                <ion-icon *ngIf="item.status == 'ON'" class="big" color="primary" src="assets/light_off.svg">
                 </ion-icon>
               </ion-button>
             </ion-col>

@@ -1,9 +1,9 @@
 import { AuthenticationService } from './../../services/authentication.service';
 import { FilterService } from './../../services/filter.service';
+import { PlantService } from '../../services/plant.service';
 import { ToastService } from './../../services/toast.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { db } from '../../appdb';
 
 @Component({
   selector: 'app-dashboard',
@@ -14,14 +14,12 @@ export class DashboardPage implements OnInit {
 
   items: any[] = [];
 
+  consumptionFilter: string[] = [];
+
   searchName: string;
 
-  consumptionFilter: string[] = [];
-  areaFilter: string[] = [];
-  statusFilter: string[] = [];
-
-  constructor(private authService: AuthenticationService, private router: Router, private filterService: FilterService, private toastService: ToastService) {
-
+  constructor(private plantService: PlantService, private authService: AuthenticationService, private router: Router, private toastService: ToastService) {
+    this.plantService.getPlants().then(plants => this.items = plants);
   }
 
   ngOnInit() {
@@ -32,49 +30,36 @@ export class DashboardPage implements OnInit {
     console.log('Nome ' + this.searchName);
   }
 
-  removeConsumption(value) {
-    console.log('Consumption filter to remove ' + value);
-    const newFilter = this.consumptionFilter.filter(x => {
-      return x !== value;
-    });
-    this.filterService.changeConsumption(newFilter);
-    this.consumptionFilter = newFilter;
-    this.filterService.getPlants().then(plants => this.items = plants);
-  }
-
-  updateStatus(event) {
-    console.log(event);
-    const plantID = event.srcElement.id;
-    this.items.forEach(x => {
-      console.log(x);
-      // tslint:disable-next-line: triple-equals
-      if (x.id == plantID) {
-        console.log('Status ' + x.status);
-        if (x.status === 'OFF') {
-          db.table('plants').update(x.id, { status: 'ON' }).then(updated => {
-            if (updated) {
-              console.log('Aggiornato');
-              x.status = 'ON';
-            }
-          });
-        } else {
-          db.table('plants').update(x.id, { status: 'OFF' }).then(updated => {
-            if (updated) {
-              console.log('Aggiornato');
-              x.status = 'OFF';
-            }
-          });
-        }
+  updateStatus(item) {
+    console.log(item);
+    this.plantService.updateStatus(item).then(updated => {
+      if (updated) {
+        this.plantService.getFilteredPlants().then(x => {
+          this.items = x;
+        });
+        console.log('Status correctly updated');
+      } else {
+        console.log('ERROR status not updated');
       }
     });
   }
 
+  removeConsumption(value) {
+    console.log('Consumption filter to remove ' + value);
+    let newFilter = this.consumptionFilter.filter(x => {
+      return x !== value;
+    });
+    if (newFilter.length === 0) {
+      newFilter = ['Low', 'Medium', 'High'];
+    }
+    this.consumptionFilter = newFilter;
+    this.plantService.setFilters(newFilter);
+    this.plantService.getFilteredPlants().then(plants => this.items = plants);
+  }
 
   ionViewWillEnter() {
-    if (this.filterService.consumption.length !== 3) {
-      this.consumptionFilter = this.filterService.consumption;
-    }
-    this.filterService.getPlants().then(plants => this.items = plants);
+    this.consumptionFilter = this.plantService.getFilters();
+    this.plantService.getFilteredPlants().then(plants => this.items = plants);
   }
 
   loadFilters() {

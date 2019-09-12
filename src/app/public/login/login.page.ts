@@ -1,7 +1,6 @@
 import { AuthenticationService } from './../../services/authentication.service';
 import { Component, OnInit } from '@angular/core';
 import { ToastService } from './../../services/toast.service';
-import { db } from './../../appdb';
 
 @Component({
   selector: 'app-login',
@@ -22,10 +21,6 @@ export class LoginPage implements OnInit {
   }
 
   async login() {
-    /* db.table('users').toArray().then(data => {
-      console.log(JSON.stringify(data));
-    }); */
-
     const res = this.authService.validate(this.email, this.password);
     res.count().then(x => {
       if (x === 0) {
