@@ -1,5 +1,4 @@
 import { AuthenticationService } from './../../services/authentication.service';
-import { FilterService } from './../../services/filter.service';
 import { PlantService } from '../../services/plant.service';
 import { ToastService } from './../../services/toast.service';
 import { Component, OnInit } from '@angular/core';
@@ -29,6 +28,12 @@ export class DashboardPage implements OnInit {
   }
 
   filterValues() {
+    if (this.searchName === '') {
+      this.plantService.getFilteredPlants().then(plants => this.items = plants);
+    }
+    this.items = this.items.filter(x => {
+      return x.id === +this.searchName;
+    });
     console.log('Nome ' + this.searchName);
   }
 
