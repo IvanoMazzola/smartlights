@@ -34,6 +34,28 @@
     </ion-row>
   </ion-grid>
 
+  <ion-grid *ngIf="areaFilter.length !== 3">
+    <ion-row>
+      <ion-list *ngFor="let area of areaFilter">
+        <ion-button class="btn-nocaps" fill="clear" slot="start" (click)="removeArea(area)">
+          <ion-icon color="tertiary" src="assets/error.svg"></ion-icon>
+          <ion-label color="dark">Area: {{ area }}</ion-label>
+        </ion-button>
+      </ion-list>
+    </ion-row>
+  </ion-grid>
+
+  <ion-grid *ngIf="statusFilter.length !== 2">
+    <ion-row>
+      <ion-list *ngFor="let status of statusFilter">
+        <ion-button class="btn-nocaps" fill="clear" slot="start" (click)="removeStatus(status)">
+          <ion-icon color="tertiary" src="assets/error.svg"></ion-icon>
+          <ion-label color="dark">Status: {{ status }}</ion-label>
+        </ion-button>
+      </ion-list>
+    </ion-row>
+  </ion-grid>
+
   <ion-virtual-scroll [items]="items" approxItemHeight="160px">
     <ion-card *virtualItem="let item; let itemBounds = bounds;">
       <ion-card-header>

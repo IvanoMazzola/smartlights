@@ -15,6 +15,8 @@ export class DashboardPage implements OnInit {
   items: any[] = [];
 
   consumptionFilter: string[] = [];
+  areaFilter: string[] = [];
+  statusFilter: string[] = [];
 
   searchName: string;
 
@@ -53,12 +55,40 @@ export class DashboardPage implements OnInit {
       newFilter = ['Low', 'Medium', 'High'];
     }
     this.consumptionFilter = newFilter;
-    this.plantService.setFilters(newFilter);
+    this.plantService.setConsumptionFilters(newFilter);
+    this.plantService.getFilteredPlants().then(plants => this.items = plants);
+  }
+
+  removeArea(value) {
+    console.log('Area filter to remove ' + value);
+    let newFilter = this.areaFilter.filter(x => {
+      return x !== value;
+    });
+    if (newFilter.length === 0) {
+      newFilter = ['North Italy', 'Center Italy', 'South Italy'];
+    }
+    this.areaFilter = newFilter;
+    this.plantService.setAreaFilters(newFilter);
+    this.plantService.getFilteredPlants().then(plants => this.items = plants);
+  }
+
+  removeStatus(value) {
+    console.log('Status filter to remove ' + value);
+    let newFilter = this.statusFilter.filter(x => {
+      return x !== value;
+    });
+    if (newFilter.length === 0) {
+      newFilter = ['OFF', 'ON'];
+    }
+    this.statusFilter = newFilter;
+    this.plantService.setStatusFilters(newFilter);
     this.plantService.getFilteredPlants().then(plants => this.items = plants);
   }
 
   ionViewWillEnter() {
-    this.consumptionFilter = this.plantService.getFilters();
+    this.consumptionFilter = this.plantService.getFilters()[0];
+    this.areaFilter = this.plantService.getFilters()[1];
+    this.statusFilter = this.plantService.getFilters()[2];
     this.plantService.getFilteredPlants().then(plants => this.items = plants);
   }
 

@@ -8,6 +8,8 @@ import { db } from '../appdb';
 export class PlantService {
 
   consumptionFilter: string[] = ['Low', 'Medium', 'High'];
+  areaFilter = ['North Italy', 'Center Italy', 'South Italy'];
+  statusFilter = ['OFF', 'ON'];
 
   constructor(private authService: AuthenticationService) {
 
@@ -35,18 +37,28 @@ export class PlantService {
     return db.plants.update(item.id, { status: newStatus });
   }
 
-  setFilters(consumption) {
+  setConsumptionFilters(consumption) {
     this.consumptionFilter = consumption;
   }
 
+  setAreaFilters(area) {
+    this.areaFilter = area;
+  }
+
+  setStatusFilters(status) {
+    this.statusFilter = status;
+  }
+
   getFilters() {
-    return this.consumptionFilter;
+    return [this.consumptionFilter, this.areaFilter, this.statusFilter];
   }
 
   getFilteredPlants() {
     return db.plants
       .where('user').equals(this.authService.getTokenString())
       .and(plant => this.consumptionFilter.includes(plant.consumption))
+      .and(plant => this.areaFilter.includes(plant.area))
+      .and(plant => this.statusFilter.includes(plant.status))
       .toArray(plants => {
         return plants;
       });
