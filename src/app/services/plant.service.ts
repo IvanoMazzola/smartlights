@@ -10,6 +10,7 @@ export class PlantService {
   consumptionFilter: string[] = ['Low', 'Medium', 'High'];
   areaFilter = ['North Italy', 'Center Italy', 'South Italy'];
   statusFilter = ['OFF', 'ON'];
+  singlePlant: any;
 
   constructor(private authService: AuthenticationService) {
 
@@ -62,5 +63,11 @@ export class PlantService {
       .toArray(plants => {
         return plants;
       });
+  }
+  setItem(item) {
+    this.singlePlant = item;
+  }
+  getItem() {
+    return this.singlePlant;
   }
 }

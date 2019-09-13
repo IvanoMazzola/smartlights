@@ -1,8 +1,9 @@
 import { AuthenticationService } from './../../services/authentication.service';
 import { PlantService } from '../../services/plant.service';
 import { ToastService } from './../../services/toast.service';
-import { Component, OnInit } from '@angular/core';
+import { AfterContentInit, Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-dashboard',
@@ -10,7 +11,6 @@ import { Router } from '@angular/router';
   styleUrls: ['./dashboard.page.scss'],
 })
 export class DashboardPage implements OnInit {
-
   items: any[] = [];
 
   consumptionFilter: string[] = [];
@@ -19,12 +19,13 @@ export class DashboardPage implements OnInit {
 
   searchName: string;
 
+  @ViewChild('mapElement', { static: true }) mapElement;
+
   constructor(private plantService: PlantService, private authService: AuthenticationService, private router: Router, private toastService: ToastService) {
     this.plantService.getPlants().then(plants => this.items = plants);
   }
 
   ngOnInit() {
-
   }
 
   filterValues() {
@@ -99,6 +100,10 @@ export class DashboardPage implements OnInit {
 
   loadFilters() {
     this.router.navigate(['members', 'filters']);
+  }
+  plantDetails(item) {
+    this.plantService.setItem(item);
+    this.router.navigate(['members', 'plant']);
   }
 
   logout() {

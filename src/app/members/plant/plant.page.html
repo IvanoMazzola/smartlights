@@ -1,0 +1,40 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title text-center>Plant {{ item.id }}</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button text="" icon="arrow-back"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col padding>
+        <div #mapElement class="map"></div>
+      </ion-col>
+      <ion-col>
+        <ion-list lines="none">
+          <ion-item>
+            <div>Area: {{ item.area }}</div>
+          </ion-item>
+          <ion-item>
+            <div>City: {{ item.city }}</div>
+          </ion-item>
+          <ion-item>
+            <div>POD: {{ item.pod }}</div>
+          </ion-item>
+          <ion-item>
+            <ion-text>Status: </ion-text>
+            <div *ngIf="item.status == 'ON'; else elseBlock">
+              <ion-toggle slot="end" checked></ion-toggle>
+            </div>
+            <ng-template #elseBlock>
+              <ion-toggle disabled></ion-toggle>
+            </ng-template>
+          </ion-item>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

@@ -4,7 +4,8 @@ import { Routes, RouterModule } from '@angular/router';
 
 const routes: Routes = [
   { path: 'dashboard', loadChildren: './dashboard/dashboard.module#DashboardPageModule' },
-  { path: 'filters', loadChildren: './filters/filters.module#FiltersPageModule' }
+  { path: 'filters', loadChildren: './filters/filters.module#FiltersPageModule' },
+  { path: 'plant', loadChildren: './plant/plant.module#PlantPageModule' }
 ];
 
 
