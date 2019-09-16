@@ -38,6 +38,20 @@ export class PlantService {
     return db.plants.update(item.id, { status: newStatus });
   }
 
+  updateConnection(item) {
+    console.log(db.plants.where({ id: item.id }));
+
+    let newConnection;
+
+    if (!item.connection) {
+      newConnection = true;
+    } else {
+      newConnection = false;
+    }
+
+    return db.plants.update(item.id, { connection: newConnection });
+  }
+
   setConsumptionFilters(consumption) {
     this.consumptionFilter = consumption;
   }

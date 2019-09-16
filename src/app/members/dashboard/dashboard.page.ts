@@ -40,7 +40,25 @@ export class DashboardPage implements OnInit {
 
   updateStatus(item) {
     console.log(item);
-    this.plantService.updateStatus(item).then(updated => {
+    if (item.connection) {
+      this.plantService.updateStatus(item).then(updated => {
+        if (updated) {
+          this.plantService.getFilteredPlants().then(x => {
+            this.items = x;
+          });
+          console.log('Status correctly updated');
+        } else {
+          console.log('ERROR status not updated');
+        }
+      });
+    } else {
+      this.toastService.showToast('Connect to plant first', 'warning');
+    }
+  }
+
+  connectToPlant(item) {
+    console.log(item);
+    this.plantService.updateConnection(item).then(updated => {
       if (updated) {
         this.plantService.getFilteredPlants().then(x => {
           this.items = x;

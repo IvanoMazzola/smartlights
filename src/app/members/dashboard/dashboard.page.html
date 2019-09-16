@@ -58,27 +58,32 @@
 
   <ion-virtual-scroll [items]="items" approxItemHeight="160px">
     <ion-card *virtualItem="let item; let itemBounds = bounds;">
-      <ion-card-header>
-        <ion-card-subtitle>Plant ID: {{ item.id }} </ion-card-subtitle>
-      </ion-card-header>
+      <ion-item lines="full">
+        <ion-icon *ngIf="!item.connection" class="small" src="assets/dot.svg" slot="start"></ion-icon>
+        <ion-icon *ngIf="item.connection" class="small" src="assets/dot_ok.svg" slot="start"></ion-icon>
+        <ion-label color="dark">
+          Plant ID: {{ item.id }}
+        </ion-label>
+        <ion-button *ngIf="!item.connection" fill="outline" slot="end" (click)="connectToPlant(item)">Connect</ion-button>
+        <ion-button *ngIf="item.connection" fill="outline" slot="end" (click)="connectToPlant(item)">Disconnect</ion-button>
+      </ion-item>
 
       <ion-card-content>
         <ion-grid>
-          <ion-row (click)="plantDetails(item)">
+          <ion-row text-center>
             <ion-col>
-                <ion-icon class="big" src="assets/google_map.svg"></ion-icon>
+              <ion-icon (click)="plantDetails(item)" class="big" src="assets/google_map.svg"></ion-icon>
             </ion-col>
             <ion-col text-center>
               <div>Area: {{ item.area }} </div>
               <div>City: {{ item.city }}</div>
               <div>Consumption: {{ item.consumption }}</div>
-              <div>POD: {{ item.pod }}</div>
             </ion-col>
             <ion-col text-center>
               <ion-button class="btn-transparente" (click)="updateStatus(item)" fill="clear" size="large">
-                <ion-icon *ngIf="item.status == 'OFF'" class="big" color="tertiary" src="assets/light_off.svg">
+                <ion-icon *ngIf="item.status == 'OFF' || !item.connection" class="big" color="tertiary" src="assets/light_off.svg">
                 </ion-icon>
-                <ion-icon *ngIf="item.status == 'ON'" class="big" color="primary" src="assets/light_off.svg">
+                <ion-icon *ngIf="item.status == 'ON' && item.connection" class="big" color="primary" src="assets/light_off.svg">
                 </ion-icon>
               </ion-button>
             </ion-col>
