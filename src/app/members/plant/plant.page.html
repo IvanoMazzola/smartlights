@@ -15,8 +15,18 @@
       </ion-col>
       <ion-col>
         <ion-card no-padding>
-          <ion-card-header>
-            <ion-card-subtitle>Plant details</ion-card-subtitle>
+          <ion-card-header no-padding class="no-margin">
+            <ion-item lines="none">
+              <ion-icon *ngIf="!item.connection" class="small" src="assets/dot.svg" slot="start"></ion-icon>
+              <ion-icon *ngIf="item.connection" class="small" src="assets/dot_ok.svg" slot="start"></ion-icon>
+              <ion-label color="dark">
+                Status
+              </ion-label>
+              <ion-button *ngIf="!item.connection" fill="outline" slot="end" (click)="connectToPlant(item)">Connect
+              </ion-button>
+              <ion-button *ngIf="item.connection" fill="outline" slot="end" (click)="connectToPlant(item)">Disconnect
+              </ion-button>
+            </ion-item>
           </ion-card-header>
 
           <ion-card-content no-padding>
@@ -34,10 +44,11 @@
                 <ion-label class="label-padding">POD: {{ item.pod }}</ion-label>
               </ion-item>
               <ion-item no-padding lines="none">
-                <ion-text class="label-padding">Status: </ion-text>
-                <ion-toggle *ngIf="item.status =='ON'; else elseBlock" checked></ion-toggle>
+                <ion-text class="label-padding">Lights: </ion-text>
+                <ion-toggle *ngIf="item.status =='ON'; else elseBlock" (ionChange)="updateStatus(item)" checked>
+                </ion-toggle>
                 <ng-template #elseBlock>
-                  <ion-toggle disabled></ion-toggle>
+                  <ion-toggle checked="false" (ionChange)="updateStatus(item)"></ion-toggle>
                 </ng-template>
               </ion-item>
             </ion-list>

@@ -1,6 +1,7 @@
 import { AfterContentInit, Component, OnInit, ViewChild } from '@angular/core';
 import { PlantService } from '../../services/plant.service';
 import { Router } from '@angular/router';
+import { ToastService } from './../../services/toast.service';
 
 declare var google;
 
@@ -14,12 +15,11 @@ declare var google;
 export class PlantPage implements OnInit, AfterContentInit {
   map;
   item: any = [];
-  @ViewChild('mapElement', {static: true}) mapElement;
+  @ViewChild('mapElement', { static: true }) mapElement;
 
-  constructor(private plantService: PlantService, private router: Router) {
+  constructor(private plantService: PlantService, private router: Router, private toastService: ToastService) {
     this.item = this.plantService.getItem();
   }
-
 
   ngOnInit() {
   }
@@ -27,9 +27,40 @@ export class PlantPage implements OnInit, AfterContentInit {
     this.map = new google.maps.Map(
       this.mapElement.nativeElement,
       {
-        center: {lat: -34.397, lng: 150.644},
+        center: { lat: -34.397, lng: 150.644 },
         zoom: 8
       });
+  }
+
+  updateStatus(item) {
+    console.log(item);
+    if (item.connection) {
+      this.plantService.updateStatus(item).then(updated => {
+        if (updated) {
+          console.log('Status correctly updated');
+        } else {
+          console.log('ERROR status not updated');
+        }
+      });
+    } else {
+      this.toastService.showToast('Connect to plant first', 'warning');
+    }
+  }
+
+  connectToPlant(item) {
+    console.log(item);
+    this.plantService.updateConnection(item).then(updated => {
+      if (updated) {
+        if (!item.connection) {
+          this.item.connection = true;
+        } else {
+          this.item.connection = false;
+        }
+        console.log('Status correctly updated');
+      } else {
+        console.log('ERROR status not updated');
+      }
+    });
   }
 
 }
