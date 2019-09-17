@@ -78,9 +78,11 @@ export class PlantService {
         return plants;
       });
   }
+
   setItem(item) {
     this.singlePlant = item;
   }
+
   getItem() {
     return this.singlePlant;
   }
