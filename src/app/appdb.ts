@@ -15,7 +15,7 @@ export class AppDatabase extends Dexie {
         // (Here's where the implicit table props are dynamically created)
         this.version(1).stores({
             users: '++id,email,password',
-            plants: '++id, user, area, city, pod, consumption, status, connection'
+            plants: '++id, user, area, city, address, pod, consumption, status, connection'
         });
 
         // The following lines are needed for it to work across typescipt using babel-preset-typescript:
@@ -27,16 +27,16 @@ export class AppDatabase extends Dexie {
         this.table('users').put({ id: 2, email: 'x100mini@gmail.com', password: 'francesco' });
         this.table('users').put({ id: 3, email: 'a', password: 'b' });
 
-        this.table('plants').put({ id: 1, user: 'dabbraccio.francesco@gmail.com', area: 'North Italy', city: 'Milan', pod: 'IT 001 E 12345678', consumption: 'Low', status: 'OFF', connection: false });
-        this.table('plants').put({ id: 2, user: 'dabbraccio.francesco@gmail.com', area: 'South Italy', city: 'Vico Equense', pod: 'IT 002 E 12345678', consumption: 'Medium', status: 'ON', connection: true });
+        this.table('plants').put({ id: 1, user: 'dabbraccio.francesco@gmail.com', area: 'North Italy', city: 'Milan', address: 'Via Carlo Poma, 17', pod: 'IT 001 E 12345678', consumption: 'Low', status: 'OFF', connection: false });
+        this.table('plants').put({ id: 2, user: 'dabbraccio.francesco@gmail.com', area: 'South Italy', city: 'Vico Equense', address: 'Via Nicotera, 16', pod: 'IT 002 E 12345678', consumption: 'Medium', status: 'ON', connection: true });
 
-        this.table('plants').put({ id: 3, user: 'x100mini@gmail.com', area: 'North Italy', city: 'Turin', pod: 'IT 003 E 12345678', consumption: 'High', status: 'OFF', connection: false });
-        this.table('plants').put({ id: 4, user: 'x100mini@gmail.com', area: 'Center Italy', city: 'Frosinone', pod: 'IT 004 E 12345678', consumption: 'Low', status: 'OFF', connection: true });
-        this.table('plants').put({ id: 5, user: 'x100mini@gmail.com', area: 'South Italy', city: 'Canosa di Puglia', pod: 'IT 005 E 12345678', consumption: 'High', status: 'ON', connection: false });
+        this.table('plants').put({ id: 3, user: 'x100mini@gmail.com', area: 'North Italy', city: 'Turin', address: 'Corso Raffaello, 7/Bis', pod: 'IT 003 E 12345678', consumption: 'High', status: 'OFF', connection: false });
+        this.table('plants').put({ id: 4, user: 'x100mini@gmail.com', area: 'Center Italy', city: 'Frosinone', address: 'Via Maria, 63', pod: 'IT 004 E 12345678', consumption: 'Low', status: 'OFF', connection: true });
+        this.table('plants').put({ id: 5, user: 'x100mini@gmail.com', area: 'South Italy', city: 'Canosa di Puglia', address: 'Via Santa Lucia, 45', pod: 'IT 005 E 12345678', consumption: 'High', status: 'ON', connection: false });
 
-        this.table('plants').put({ id: 6, user: 'a', area: 'North Italy', city: 'Turin', pod: 'IT 003 E 12345679', consumption: 'High', status: 'OFF', connection: false });
-        this.table('plants').put({ id: 7, user: 'a', area: 'Center Italy', city: 'Frosinone', pod: 'IT 004 E 12345680', consumption: 'Low', status: 'OFF', connection: true });
-        this.table('plants').put({ id: 8, user: 'a', area: 'South Italy', city: 'Canosa di Puglia', pod: 'IT 005 E 12345681', consumption: 'High', status: 'ON', connection: false });
+        this.table('plants').put({ id: 6, user: 'a', area: 'North Italy', city: 'Turin', address: 'Corso Raffaello, 7/Bis', pod: 'IT 003 E 12345679', consumption: 'High', status: 'OFF', connection: false });
+        this.table('plants').put({ id: 7, user: 'a', area: 'Center Italy', city: 'Frosinone', address: 'Via Maria, 63', pod: 'IT 004 E 12345680', consumption: 'Low', status: 'OFF', connection: true });
+        this.table('plants').put({ id: 8, user: 'a', area: 'South Italy', city: 'Canosa di Puglia', address: 'Via Santa Lucia, 45', pod: 'IT 005 E 12345681', consumption: 'High', status: 'ON', connection: false });
     }
 }
 
@@ -51,6 +51,7 @@ export interface IPlant {
     user: string;
     area: string;
     city: string;
+    address: string;
     pod: string;
     consumption: string;
     status: string;
