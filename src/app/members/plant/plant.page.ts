@@ -44,12 +44,20 @@ export class PlantPage implements OnInit, AfterContentInit {
   }
 
   ngAfterContentInit(): void {
+    this.mapInit();
+  }
+  mapInit() {
+    const pos = new google.maps.LatLng(this.item.lat, this.item.long);
     this.map = new google.maps.Map(
       this.mapElement.nativeElement,
       {
-        center: { lat: -34.397, lng: 150.644 },
-        zoom: 8
+        center: pos,
+        zoom: 13
       });
+    const marker = new google.maps.Marker({
+      position: pos
+    });
+    marker.setMap(this.map);
   }
 
   updateStatus(item) {

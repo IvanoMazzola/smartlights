@@ -22,6 +22,24 @@
       Filters
     </ion-button>
   </ion-item>
+  <ion-item>
+    <ion-grid>
+      <ion-tabs>
+        <ion-tab-bar slot="top">
+          <ion-col>
+            <ion-tab-button tab="list">
+              <ion-icon name="list"></ion-icon>
+            </ion-tab-button>
+          </ion-col>
+          <ion-col>
+            <ion-tab-button tab="map">
+              <ion-icon name="map"></ion-icon>
+            </ion-tab-button>
+          </ion-col>
+        </ion-tab-bar>
+      </ion-tabs>
+    </ion-grid>
+  </ion-item>
 
   <ion-grid *ngIf="consumptionFilter.length !== 3">
     <ion-row>
