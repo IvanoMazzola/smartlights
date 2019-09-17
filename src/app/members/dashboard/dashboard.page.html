@@ -64,8 +64,10 @@
         <ion-label color="dark">
           Plant ID: {{ item.id }}
         </ion-label>
-        <ion-button *ngIf="!item.connection" fill="outline" slot="end" (click)="connectToPlant(item)">Connect</ion-button>
-        <ion-button *ngIf="item.connection" fill="outline" slot="end" (click)="connectToPlant(item)">Disconnect</ion-button>
+        <ion-button *ngIf="!item.connection" fill="outline" slot="end" (click)="connectToPlant(item)">Connect
+        </ion-button>
+        <ion-button *ngIf="item.connection" fill="outline" slot="end" (click)="connectToPlant(item)">Disconnect
+        </ion-button>
       </ion-item>
 
       <ion-card-content>
@@ -81,9 +83,11 @@
             </ion-col>
             <ion-col text-center>
               <ion-button class="btn-transparente" (click)="updateStatus(item)" fill="clear" size="large">
-                <ion-icon *ngIf="item.status == 'OFF' || !item.connection" class="big" color="tertiary" src="assets/light_off.svg">
+                <ion-icon *ngIf="item.status == 'OFF' || !item.connection" class="big" color="tertiary"
+                  src="assets/light_off.svg">
                 </ion-icon>
-                <ion-icon *ngIf="item.status == 'ON' && item.connection" class="big" color="primary" src="assets/light_off.svg">
+                <ion-icon *ngIf="item.status == 'ON' && item.connection" class="big" color="primary"
+                  src="assets/light_off.svg">
                 </ion-icon>
               </ion-button>
             </ion-col>
