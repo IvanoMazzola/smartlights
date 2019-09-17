@@ -45,11 +45,7 @@
               </ion-item>
               <ion-item no-padding lines="none">
                 <ion-text class="label-padding">Lights: </ion-text>
-                <ion-toggle *ngIf="item.status =='ON'; else elseBlock" (ionChange)="updateStatus(item)" checked>
-                </ion-toggle>
-                <ng-template #elseBlock>
-                  <ion-toggle checked="false" (ionChange)="updateStatus(item)"></ion-toggle>
-                </ng-template>
+                <ion-toggle disabled="{{ !item.connection }}" [(ngModel)]="carmine" (ionChange)="updateStatus(item)"></ion-toggle>
               </ion-item>
             </ion-list>
           </ion-card-content>

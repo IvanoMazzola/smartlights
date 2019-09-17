@@ -14,15 +14,35 @@ declare var google;
 
 export class PlantPage implements OnInit, AfterContentInit {
   map;
+
   item: any = [];
+
+  carmine: boolean;
+
   @ViewChild('mapElement', { static: true }) mapElement;
 
   constructor(private plantService: PlantService, private router: Router, private toastService: ToastService) {
-    this.item = this.plantService.getItem();
+
   }
 
   ngOnInit() {
+    this.item = this.plantService.getItem();
+    if (this.item.status === 'OFF') {
+      this.carmine = false;
+    } else {
+      this.carmine = true;
+    }
   }
+
+  ionViewWillEnter() {
+    this.item = this.plantService.getItem();
+    if (this.item.status === 'OFF') {
+      this.carmine = false;
+    } else {
+      this.carmine = true;
+    }
+  }
+
   ngAfterContentInit(): void {
     this.map = new google.maps.Map(
       this.mapElement.nativeElement,
@@ -33,18 +53,19 @@ export class PlantPage implements OnInit, AfterContentInit {
   }
 
   updateStatus(item) {
-    console.log(item);
-    if (item.connection) {
-      this.plantService.updateStatus(item).then(updated => {
-        if (updated) {
-          console.log('Status correctly updated');
+    console.log('Item ' + item);
+    this.plantService.updateStatus(item).then(updated => {
+      if (updated) {
+        if (item.status === 'OFF') {
+          item.status = 'ON';
         } else {
-          console.log('ERROR status not updated');
+          item.status = 'OFF';
         }
-      });
-    } else {
-      this.toastService.showToast('Connect to plant first', 'warning');
-    }
+        console.log('Status correctly updated');
+      } else {
+        console.log('ERROR status not updated');
+      }
+    });
   }
 
   connectToPlant(item) {
