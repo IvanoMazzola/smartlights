@@ -14,7 +14,7 @@ declare var google;
 export class PlantPage implements OnInit, AfterContentInit {
   map;
   item: any = [];
-  @ViewChild('mapElement', {static: true}) mapElement;
+  @ViewChild('mapElement', { static: true }) mapElement;
 
   constructor(private plantService: PlantService, private router: Router) {
     this.item = this.plantService.getItem();
@@ -24,12 +24,20 @@ export class PlantPage implements OnInit, AfterContentInit {
   ngOnInit() {
   }
   ngAfterContentInit(): void {
+    this.mapInit();
+  }
+  mapInit() {
+    const pos = new google.maps.LatLng(this.item.lat, this.item.long);
     this.map = new google.maps.Map(
       this.mapElement.nativeElement,
       {
-        center: {lat: -34.397, lng: 150.644},
-        zoom: 8
+        center: pos,
+        zoom: 13
       });
+    const marker = new google.maps.Marker({
+      position: pos
+    });
+    marker.setMap(this.map);
   }
 
 }
