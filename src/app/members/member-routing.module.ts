@@ -8,7 +8,10 @@ const routes: Routes = [
   { path: 'plant', loadChildren: './plant/plant.module#PlantPageModule' },
   { path: 'tabs', loadChildren: './tabs/tabs.module#TabsPageModule' },
   { path: 'tab1', loadChildren: './tab1/tab1.module#Tab1PageModule' },
-  { path: 'tab2', loadChildren: './tab2/tab2.module#Tab2PageModule' }
+  { path: 'tab2', loadChildren: './tab2/tab2.module#Tab2PageModule' },
+  { path: 'new-dashboard', loadChildren: './new-dashboard/new-dashboard.module#NewDashboardPageModule' },
+  { path: 'list', loadChildren: './list/list.module#ListPageModule' },
+  { path: 'map', loadChildren: './map/map.module#MapPageModule' }
 ];
 
 

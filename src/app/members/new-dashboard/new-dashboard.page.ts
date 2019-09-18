@@ -1,16 +1,15 @@
+import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from './../../services/authentication.service';
 import { PlantService } from '../../services/plant.service';
-import { ToastService } from './../../services/toast.service';
-import { AfterContentInit, Component, OnInit, ViewChild } from '@angular/core';
+import { PlantPage } from '../plant/plant.page';
 import { Router } from '@angular/router';
 
-
 @Component({
-  selector: 'app-dashboard',
-  templateUrl: './dashboard.page.html',
-  styleUrls: ['./dashboard.page.scss'],
+  selector: 'app-new-dashboard',
+  templateUrl: './new-dashboard.page.html',
+  styleUrls: ['./new-dashboard.page.scss'],
 })
-export class DashboardPage implements OnInit {
+export class NewDashboardPage implements OnInit {
   items: any[] = [];
 
   consumptionFilter: string[] = [];
@@ -19,55 +18,11 @@ export class DashboardPage implements OnInit {
 
   searchName: string;
 
-  @ViewChild('mapElement', { static: true }) mapElement;
-
-  constructor(private plantService: PlantService, private authService: AuthenticationService, private router: Router, private toastService: ToastService) {
+  constructor(private router: Router, private authService: AuthenticationService, private plantService: PlantService) {
     this.plantService.getPlants().then(plants => this.items = plants);
   }
 
   ngOnInit() {
-  }
-
-  filterValues() {
-    if (this.searchName === '') {
-      this.plantService.getFilteredPlants().then(plants => this.items = plants);
-    }
-    this.items = this.items.filter(x => {
-      return x.id === +this.searchName;
-    });
-    console.log('Nome ' + this.searchName);
-  }
-
-  updateStatus(item) {
-    console.log(item);
-    if (item.connection) {
-      this.plantService.updateStatus(item).then(updated => {
-        if (updated) {
-          this.plantService.getFilteredPlants().then(x => {
-            this.items = x;
-          });
-          console.log('Status correctly updated');
-        } else {
-          console.log('ERROR status not updated');
-        }
-      });
-    } else {
-      this.toastService.showToast('Connect to plant first', 'warning');
-    }
-  }
-
-  connectToPlant(item) {
-    console.log(item);
-    this.plantService.updateConnection(item).then(updated => {
-      if (updated) {
-        this.plantService.getFilteredPlants().then(x => {
-          this.items = x;
-        });
-        console.log('Status correctly updated');
-      } else {
-        console.log('ERROR status not updated');
-      }
-    });
   }
 
   removeConsumption(value) {
@@ -120,12 +75,18 @@ export class DashboardPage implements OnInit {
     this.router.navigate(['members', 'filters']);
   }
 
-  plantDetails(item) {
-    this.plantService.setItem(item);
-    this.router.navigate(['members', 'plant']);
+  filterValues() {
+    if (this.searchName === '') {
+      this.plantService.getFilteredPlants().then(plants => this.items = plants);
+    }
+    this.items = this.items.filter(x => {
+      return x.id === +this.searchName;
+    });
+    console.log('Nome ' + this.searchName);
   }
 
   logout() {
     this.authService.logout();
   }
+
 }

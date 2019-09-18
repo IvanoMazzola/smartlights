@@ -84,7 +84,7 @@ export class FiltersPage implements OnInit {
     this.plantService.setAreaFilters(this.area);
     this.plantService.setStatusFilters(this.status);
 
-    this.router.navigate(['members', 'dashboard']);
+    this.router.navigate(['members', 'new-dashboard']);
   }
 
   checkEmpty() {
