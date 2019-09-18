@@ -2,6 +2,7 @@ import { AfterContentInit, Component, OnInit, ViewChild } from '@angular/core';
 import { PlantService } from '../../services/plant.service';
 import { Router } from '@angular/router';
 import { ToastService } from './../../services/toast.service';
+import * as HighCharts from 'highcharts';
 
 declare var google;
 
@@ -41,11 +42,37 @@ export class PlantPage implements OnInit, AfterContentInit {
     } else {
       this.carmine = true;
     }
+    const myChart = HighCharts.chart('container', {
+      chart: {
+        type: 'range'
+      },
+      title: {
+        text: 'Fruit Consumption'
+      },
+      xAxis: {
+        categories: ['Apples', 'Bananas', 'Oranges']
+      },
+      yAxis: {
+        title: {
+          text: 'Fruit eaten'
+        }
+      },
+      series: [{
+        name: 'Jane',
+        type: undefined,
+        data: [1, 0, 4]
+      }, {
+        name: 'John',
+        type: undefined,
+        data: [5, 7, 3]
+      }]
+    });
   }
 
   ngAfterContentInit(): void {
     this.mapInit();
   }
+
   mapInit() {
     const pos = new google.maps.LatLng(this.item.lat, this.item.long);
     this.map = new google.maps.Map(

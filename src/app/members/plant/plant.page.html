@@ -45,7 +45,8 @@
               </ion-item>
               <ion-item no-padding lines="none">
                 <ion-text class="label-padding">Lights: </ion-text>
-                <ion-toggle disabled="{{ !item.connection }}" [(ngModel)]="carmine" (ionChange)="updateStatus(item)"></ion-toggle>
+                <ion-toggle disabled="{{ !item.connection }}" [(ngModel)]="carmine" (ionChange)="updateStatus(item)">
+                </ion-toggle>
               </ion-item>
             </ion-list>
           </ion-card-content>
@@ -54,4 +55,5 @@
       </ion-col>
     </ion-row>
   </ion-grid>
+  <div id="container" style="display: block;"></div>
 </ion-content>

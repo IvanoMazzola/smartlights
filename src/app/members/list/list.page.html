@@ -65,7 +65,9 @@
         <ion-grid>
           <ion-row text-center>
             <ion-col>
-              <ion-icon (click)="plantDetails(item)" class="big" src="assets/plant_detail.svg"></ion-icon>
+              <ion-button class="btn-transparente" (click)="plantDetails(item)" fill="clear" size="large">
+                <ion-icon class="big" src="assets/plant_detail.svg"></ion-icon>
+              </ion-button>
             </ion-col>
             <ion-col text-center>
               <div>Area: {{ item.area }} </div>
