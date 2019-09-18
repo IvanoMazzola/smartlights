@@ -11,6 +11,7 @@ export class PlantService {
   areaFilter = ['North Italy', 'Center Italy', 'South Italy'];
   statusFilter = ['OFF', 'ON'];
   singlePlant: any;
+  items: any[] = [];
 
   constructor(private authService: AuthenticationService) {
 
@@ -20,6 +21,7 @@ export class PlantService {
     return db.plants
       .where('user').equals(this.authService.getTokenString())
       .toArray(plants => {
+        this.items = plants;
         return plants;
       });
   }
@@ -85,5 +87,8 @@ export class PlantService {
 
   getItem() {
     return this.singlePlant;
+  }
+  getAll() {
+    return this.items;
   }
 }
