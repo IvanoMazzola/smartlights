@@ -1,5 +1,6 @@
 import { AfterContentInit, Component, OnInit, ViewChild } from '@angular/core';
 import { PlantService } from 'src/app/services/plant.service';
+import { Router } from '@angular/router';
 
 declare var google;
 
@@ -16,9 +17,8 @@ export class MapPage implements OnInit, AfterContentInit {
 
 
   @ViewChild('mapElement', { static: true }) mapElement;
-  constructor(private plantS: PlantService) {
+  constructor(private plantS: PlantService, private router: Router) {
     this.items = plantS.getAll();
-    console.log(this.items.length);
   }
 
   ngOnInit() {
@@ -47,14 +47,16 @@ export class MapPage implements OnInit, AfterContentInit {
       });
       this.markers.push(marker);
       marker.setMap(this.map);
-      /*
+      const contentString = '<b>Plant ' + element.id + '</b>' + '<br><b>Area:</b> ' + element.area + '<br><b>City:</b> ' + element.city + '<br><b>Address:</b> ' + element.address;
       const infoWindow = new google.maps.InfoWindow({
-        content: {}
+        content: contentString,
       });
       google.maps.event.addListener(marker, 'click', () => {
-        infoWindow.open(this.map, marker);
+        //infoWindow.open(this.map, marker);
+        this.plantS.setItem(element);
+        this.router.navigate(['members', 'plant']);
       });
-      */
+
     }
   }
 }
