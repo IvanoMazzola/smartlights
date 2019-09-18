@@ -44,27 +44,55 @@ export class PlantPage implements OnInit, AfterContentInit {
     }
     const myChart = HighCharts.chart('container', {
       chart: {
-        type: 'range'
+        type: 'bar'
       },
       title: {
-        text: 'Fruit Consumption'
+        text: 'Energy Consumption'
       },
       xAxis: {
-        categories: ['Apples', 'Bananas', 'Oranges']
+        categories: ['June', 'July', 'August']
       },
       yAxis: {
         title: {
-          text: 'Fruit eaten'
+          text: 'kWh'
         }
       },
       series: [{
-        name: 'Jane',
+        name: 'Air conditioning',
         type: undefined,
-        data: [1, 0, 4]
+        data: [18, 23, 27]
       }, {
-        name: 'John',
+        name: 'Lights',
         type: undefined,
-        data: [5, 7, 3]
+        data: [100, 80, 65]
+      }]
+    });
+
+    const tuoChart = HighCharts.chart('montenegro', {
+      chart: {
+        type: 'bar'
+      },
+      title: {
+        text: 'Energy Consumption'
+      },
+      xAxis: {
+        categories: ['2017', '2018', '2019']
+      },
+      yAxis: {
+        title: {
+          text: 'kWh'
+        }
+      },
+      series: [{
+        color: '#00a4ff',
+        name: 'Air conditioning',
+        type: undefined,
+        data: [216, 223, 237]
+      }, {
+        color: '#5F021F',
+        name: 'Lights',
+        type: undefined,
+        data: [1200, 1275, 1398]
       }]
     });
   }
