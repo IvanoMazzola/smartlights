@@ -4,7 +4,7 @@ import { NewDashboardPage } from './new-dashboard.page';
 
 const routes: Routes = [
     {
-        path: 'new-dashboard',
+        path: '',
         component: NewDashboardPage,
         children:
             [
@@ -30,14 +30,14 @@ const routes: Routes = [
                 },
                 {
                     path: '',
-                    redirectTo: 'new-dashboard/list',
+                    redirectTo: 'list',
                     pathMatch: 'full'
                 }
             ]
     },
     {
         path: '',
-        redirectTo: 'new-dashboard/list',
+        redirectTo: 'list',
         pathMatch: 'full'
     }
 ];

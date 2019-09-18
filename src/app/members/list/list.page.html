@@ -1,8 +1,52 @@
-<ion-header>
-
+<ion-header no-border>
+  <ion-toolbar color="primary" class="toolbar-padding">
+    <ion-searchbar [(ngModel)]="searchName" (ionChange)="filterValues()" showCancelButton="focus"></ion-searchbar>
+  </ion-toolbar>
+  <ion-item no-padding>
+    <ion-label class="label-padding" color="dark">
+      Number of plants: {{ items.length }}
+    </ion-label>
+    <ion-button slot="end" class="btn-transparente" fill="clear" (click)="loadFilters()">
+      <ion-icon class="medium" src="assets/filters.svg"></ion-icon>
+      Filters
+    </ion-button>
+  </ion-item>
 </ion-header>
 
 <ion-content>
+  <ion-grid *ngIf="consumptionFilter.length !== 3">
+    <ion-row>
+      <ion-list *ngFor="let consumption of consumptionFilter">
+        <ion-button class="btn-nocaps" fill="clear" slot="start" (click)="removeConsumption(consumption)">
+          <ion-icon color="tertiary" src="assets/error.svg"></ion-icon>
+          <ion-label color="dark">Consumption: {{ consumption }}</ion-label>
+        </ion-button>
+      </ion-list>
+    </ion-row>
+  </ion-grid>
+
+  <ion-grid *ngIf="areaFilter.length !== 3">
+    <ion-row>
+      <ion-list *ngFor="let area of areaFilter">
+        <ion-button class="btn-nocaps" fill="clear" slot="start" (click)="removeArea(area)">
+          <ion-icon color="tertiary" src="assets/error.svg"></ion-icon>
+          <ion-label color="dark">Area: {{ area }}</ion-label>
+        </ion-button>
+      </ion-list>
+    </ion-row>
+  </ion-grid>
+
+  <ion-grid *ngIf="statusFilter.length !== 2">
+    <ion-row>
+      <ion-list *ngFor="let status of statusFilter">
+        <ion-button class="btn-nocaps" fill="clear" slot="start" (click)="removeStatus(status)">
+          <ion-icon color="tertiary" src="assets/error.svg"></ion-icon>
+          <ion-label color="dark">Status: {{ status }}</ion-label>
+        </ion-button>
+      </ion-list>
+    </ion-row>
+  </ion-grid>
+
   <ion-virtual-scroll [items]="items" approxItemHeight="160px">
     <ion-card *virtualItem="let item; let itemBounds = bounds;">
       <ion-item lines="full">
