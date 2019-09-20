@@ -42,15 +42,16 @@ export class PlantPage implements OnInit, AfterContentInit {
     } else {
       this.carmine = true;
     }
-    const myChart = HighCharts.chart('container', {
+
+    const myChart = HighCharts.chart('lastWeek', {
       chart: {
-        type: 'bar'
+        type: 'spline'
       },
       title: {
-        text: 'Energy Consumption'
+        text: 'Consumption (last week)'
       },
       xAxis: {
-        categories: ['June', 'July', 'August']
+        categories: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
       },
       yAxis: {
         title: {
@@ -58,41 +59,123 @@ export class PlantPage implements OnInit, AfterContentInit {
         }
       },
       series: [{
-        name: 'Air conditioning',
-        type: undefined,
-        data: [18, 23, 27]
-      }, {
         name: 'Lights',
         type: undefined,
-        data: [100, 80, 65]
+        data: [123, 104, 135, 96, 102, 90, 30]
       }]
     });
 
-    const tuoChart = HighCharts.chart('montenegro', {
+    const lastMonth = HighCharts.chart('lastMonth', {
       chart: {
-        type: 'bar'
+        type: 'column'
       },
       title: {
-        text: 'Energy Consumption'
+        text: 'Consumption (last month)'
       },
       xAxis: {
-        categories: ['2017', '2018', '2019']
+        categories: [
+          'Week 1',
+          'Week 2',
+          'Week 3',
+          'Week 4'
+        ],
+        crosshair: true
       },
       yAxis: {
+        min: 0,
         title: {
           text: 'kWh'
         }
       },
+      tooltip: {
+        headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+        pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+          '<td style="padding:0"><b>{point.y:.1f} kWh</b></td></tr>',
+        footerFormat: '</table>',
+        shared: true,
+        useHTML: true
+      },
+      plotOptions: {
+        column: {
+          pointPadding: 0.2,
+          borderWidth: 0
+        }
+      },
       series: [{
+        name: 'Min',
+        type: undefined,
         color: '#00a4ff',
-        name: 'Air conditioning',
-        type: undefined,
-        data: [216, 223, 237]
+        data: [30, 25, 50, 35]
+
       }, {
-        color: '#5F021F',
-        name: 'Lights',
+        name: 'Avg',
         type: undefined,
-        data: [1200, 1275, 1398]
+        color: '#a1a1a1',
+        data: [107, 110, 120, 109]
+      }, {
+        name: 'Max',
+        color: '#0078ff',
+        type: undefined,
+        data: [130, 135, 170, 121]
+
+      }]
+    });
+
+    const sixMonths = HighCharts.chart('sixMonths', {
+      chart: {
+        type: 'column'
+      },
+      title: {
+        text: 'Consumption (last six months)'
+      },
+      xAxis: {
+        categories: [
+          'April',
+          'May',
+          'June',
+          'July',
+          'August',
+          'September'
+        ],
+        crosshair: true
+      },
+      yAxis: {
+        min: 0,
+        title: {
+          text: 'kWh'
+        }
+      },
+      tooltip: {
+        headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+        pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+          '<td style="padding:0"><b>{point.y:.1f} kWh</b></td></tr>',
+        footerFormat: '</table>',
+        shared: true,
+        useHTML: true
+      },
+      plotOptions: {
+        column: {
+          pointPadding: 0.2,
+          borderWidth: 0
+        }
+      },
+      series: [{
+        name: 'Min',
+        type: undefined,
+        color: '#00a4ff',
+        data: [30, 25, 50, 35, 20, 30]
+
+      }, {
+        name: 'Avg',
+        type: undefined,
+        color: '#a1a1a1',
+        data: [107, 110, 120, 109, 99, 103]
+      }, {
+        name: 'Max',
+        color: '#0078ff',
+        type: undefined,
+        data: [130, 135, 170, 121, 118, 130]
+
       }]
     });
   }
