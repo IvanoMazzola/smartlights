@@ -18,7 +18,7 @@ export class ListPage implements OnInit {
   searchName: string;
 
   constructor(private router: Router, private toastService: ToastService, private plantService: PlantService) {
-    this.plantService.getPlants().then(plants => this.items = plants);
+    this.items = plantService.getAll();
     console.log('List constructor');
   }
 

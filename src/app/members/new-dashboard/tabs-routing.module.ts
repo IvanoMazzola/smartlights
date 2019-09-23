@@ -30,14 +30,14 @@ const routes: Routes = [
                 },
                 {
                     path: '',
-                    redirectTo: 'list',
+                    redirectTo: 'map',
                     pathMatch: 'full'
                 }
             ]
     },
     {
         path: '',
-        redirectTo: 'list',
+        redirectTo: 'map',
         pathMatch: 'full'
     }
 ];

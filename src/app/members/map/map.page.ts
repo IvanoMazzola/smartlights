@@ -18,15 +18,17 @@ export class MapPage implements OnInit, AfterContentInit {
 
   @ViewChild('mapElement', { static: true }) mapElement;
   constructor(private plantS: PlantService, private router: Router) {
-    this.items = plantS.getAll();
   }
 
   ngOnInit() {
 
   }
   ngAfterContentInit(): void {
-    this.mapInit();
-    this.setMarkers();
+    this.plantS.getPlants().then(plants => {
+      this.items = plants;
+      this.mapInit();
+      this.setMarkers();
+    });
 
   }
   mapInit() {
@@ -52,7 +54,7 @@ export class MapPage implements OnInit, AfterContentInit {
         content: contentString,
       });
       google.maps.event.addListener(marker, 'click', () => {
-        //infoWindow.open(this.map, marker);
+        // infoWindow.open(this.map, marker);
         this.plantS.setItem(element);
         this.router.navigate(['members', 'plant']);
       });
