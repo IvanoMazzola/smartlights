@@ -2,7 +2,9 @@
   <ion-toolbar color="primary">
     <ion-title>Filter by</ion-title>
     <ion-buttons slot="end">
-      <ion-back-button text="" icon="close"></ion-back-button>
+      <ion-button (click)="goToList()">
+        <ion-icon slot="icon-only" name="close"></ion-icon>
+      </ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>

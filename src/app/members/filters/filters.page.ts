@@ -84,7 +84,7 @@ export class FiltersPage implements OnInit {
     this.plantService.setAreaFilters(this.area);
     this.plantService.setStatusFilters(this.status);
 
-    this.router.navigate(['members', 'new-dashboard'], {replaceUrl: true});
+    this.router.navigate(['members', 'new-dashboard', 'list'], {replaceUrl: true});
 
   }
 
@@ -98,6 +98,10 @@ export class FiltersPage implements OnInit {
     if (this.status.length === 0) {
       this.status = ['OFF', 'ON'];
     }
+  }
+
+  goToList() {
+    this.router.navigate(['members', 'new-dashboard', 'list'], {replaceUrl: true});
   }
 
   ngOnInit() {
