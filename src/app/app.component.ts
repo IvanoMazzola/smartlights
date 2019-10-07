@@ -1,10 +1,13 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthenticationService } from './services/authentication.service';
+import { FaIconLibrary, FaConfig } from '@fortawesome/angular-fontawesome';
 
 import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
+
+import { faFilter } from '@fortawesome/pro-light-svg-icons';
 
 @Component({
   selector: 'app-root',
@@ -17,8 +20,12 @@ export class AppComponent {
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
     private authenticationService: AuthenticationService,
-    private router: Router
+    private router: Router,
+    private library: FaIconLibrary,
+    private faConfig: FaConfig
   ) {
+    this.library.addIcons(faFilter);
+    this.faConfig.defaultPrefix = 'fal';
     this.initializeApp();
   }
 

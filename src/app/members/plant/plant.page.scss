@@ -26,6 +26,22 @@ ion-icon {
   }
 }
 
+fa-icon {
+  margin-right: 8px;
+}
+
+.off {
+  width: 12px;
+  height: 12px;
+  color: red;
+}
+
+.on {
+  width: 12px;
+  height: 12px;
+  color: green;
+}
+
 .map {
   height: 300px;
   width: 100%;

@@ -17,8 +17,9 @@
         <ion-card no-padding>
           <ion-card-header no-padding class="no-margin">
             <ion-item lines="none">
-              <ion-icon *ngIf="!item.connection" class="small" src="assets/dot.svg" slot="start"></ion-icon>
-              <ion-icon *ngIf="item.connection" class="small" src="assets/dot_ok.svg" slot="start"></ion-icon>
+              <fa-icon transform="shrink-3 up-2" slot="start" [ngClass]="{'off':!item.connection, 'on':item.connection}"
+                [icon]="['fas', 'circle']">
+              </fa-icon>
               <ion-label color="dark">
                 Status
               </ion-label>

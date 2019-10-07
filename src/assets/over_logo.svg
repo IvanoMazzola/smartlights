@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="92.77" height="35.6" viewBox="0 0 92.77 35.6">
+  <defs>
+    <linearGradient id="Sfumatura_senza_nome_2" data-name="Sfumatura senza nome 2" x1="21.67" y1="14.22" x2="13.93" y2="21.96" gradientTransform="matrix(1, 0, 0, -1, 0, 35.89)" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#00b4ff"/>
+      <stop offset="1" stop-color="#087cff"/>
+      <stop offset="1" stop-color="#07f"/>
+      <stop offset="1" stop-color="#00b4ff"/>
+    </linearGradient>
+  </defs>
+  <title>Logo_over_gradient</title>
+  <g id="Livello_2" data-name="Livello 2">
+    <g id="Livello_1-2" data-name="Livello 1">
+      <g id="Livello_2-2" data-name="Livello 2">
+        <g id="Livello_1-2-2" data-name="Livello 1-2">
+          <g id="Livello_2-2-2" data-name="Livello 2-2">
+            <g id="Livello_1-2-2-2" data-name="Livello 1-2-2">
+              <g>
+                <path d="M35.6,17.79A17.8,17.8,0,1,1,17.79,0h0A17.82,17.82,0,0,1,35.6,17.79Zm-30.12,0A12.32,12.32,0,1,0,17.81,5.48h0A12.34,12.34,0,0,0,5.48,17.79Z"/>
+                <circle cx="17.8" cy="17.79" r="5.48" style="fill: url(#Sfumatura_senza_nome_2)"/>
+                <g>
+                  <polygon points="73.15 14.03 73.15 16.55 78.93 16.55 78.93 18.95 73.15 18.95 73.15 21.48 79.81 21.48 79.81 23.88 70.48 23.88 70.48 11.63 79.81 11.63 79.81 14.03 73.15 14.03"/>
+                  <path d="M89.79,19.72a3.62,3.62,0,0,0,2.6-3.67V15.8a4.08,4.08,0,0,0-1-2.91,4.8,4.8,0,0,0-3.56-1.26h-5.6V17.8h0v2.41h0v3.65h2.7V20.22h2l2.59,3.65h3.25Zm-.12-3.64c0,1-.73,1.71-2,1.71H84.88V14.07h2.75c1.31,0,2,.7,2,1.72Z"/>
+                  <path d="M55.67,17.75a6.33,6.33,0,1,1-6.34-6.32h0a6.32,6.32,0,0,1,6.32,6.3h0m-2.67,0a3.65,3.65,0,1,0-3.64,3.66h0A3.64,3.64,0,0,0,53,17.77v0h0"/>
+                  <polygon points="68.66 11.63 66.76 16.55 63.95 23.87 61.09 23.87 58.28 16.55 56.39 11.63 59.25 11.63 61.15 16.55 62.51 20.12 63.9 16.55 65.78 11.63 68.66 11.63"/>
+                </g>
+              </g>
+            </g>
+          </g>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

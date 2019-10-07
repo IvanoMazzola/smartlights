@@ -7,7 +7,7 @@
       Number of plants: {{ items.length }}
     </ion-label>
     <ion-button slot="end" class="btn-transparente" fill="clear" (click)="loadFilters()">
-      <ion-icon class="medium" src="assets/filters.svg"></ion-icon>
+      <fa-icon class="filter-icon" icon="filter"></fa-icon>
       Filters
     </ion-button>
   </ion-item>
@@ -50,8 +50,9 @@
   <ion-virtual-scroll [items]="items" approxItemHeight="160px">
     <ion-card *virtualItem="let item; let itemBounds = bounds;">
       <ion-item lines="full">
-        <ion-icon *ngIf="!item.connection" class="small" src="assets/dot.svg" slot="start"></ion-icon>
-        <ion-icon *ngIf="item.connection" class="small" src="assets/dot_ok.svg" slot="start"></ion-icon>
+        <fa-icon transform="shrink-3 up-2" slot="start" [ngClass]="{'off':!item.connection, 'on':item.connection}"
+          [icon]="['fas', 'circle']">
+        </fa-icon>
         <ion-label color="dark">
           Plant ID: {{ item.id }}
         </ion-label>
@@ -64,17 +65,20 @@
       <ion-card-content>
         <ion-grid>
           <ion-row text-center>
-            <ion-col>
-              <ion-button class="btn-transparente" (click)="plantDetails(item)" fill="clear" size="large">
-                <ion-icon class="big" src="assets/plant_detail.svg"></ion-icon>
-              </ion-button>
+            <ion-col text-center>
+              <span (click)="plantDetails(item)" class="fa-stack fa-2x vertical-center">
+                <fa-icon icon="building" transform="right-4"></fa-icon>
+                <fa-icon icon="search" transform="shrink-5 up-8 right-2"></fa-icon>
+              </span>
+              <!-- <ion-icon class="big" src="assets/plant_detail.svg"></ion-icon> -->
             </ion-col>
             <ion-col text-center>
               <div>Area: {{ item.area }} </div>
               <div>City: {{ item.city }}</div>
               <div>Consumption: {{ item.consumption }}</div>
             </ion-col>
-            <ion-col text-center>
+            <ion-col class="vertical-center" text-center>
+              <!--
               <ion-button class="btn-transparente" (click)="updateStatus(item)" fill="clear" size="large">
                 <ion-icon *ngIf="item.status == 'OFF' || !item.connection" class="big" color="tertiary"
                   src="assets/light_off.svg">
@@ -83,6 +87,10 @@
                   src="assets/light_off.svg">
                 </ion-icon>
               </ion-button>
+            -->
+              <fa-icon (click)="updateStatus(item)" icon="lightbulb-on" class="fa-2x"
+                [ngClass]="{'bulb-off':item.status == 'OFF' || !item.connection, 'bulb-on':item.status == 'ON' && item.connection}">
+              </fa-icon>
             </ion-col>
           </ion-row>
         </ion-grid>
